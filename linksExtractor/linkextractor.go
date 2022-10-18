@@ -1,10 +1,10 @@
-package main
+package linksExtractor
 
 import (
 	"regexp"
 )
 
-func extract(text string) []string {
+func ExtractUrl(text string) []string {
 	regexUrl := `(http|ftp|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])`
 	re := regexp.MustCompile(regexUrl)
 	return re.FindAllString(text, -1)

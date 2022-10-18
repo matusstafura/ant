@@ -1,4 +1,4 @@
-package main
+package linksExtractor
 
 import (
 	"testing"
@@ -15,7 +15,7 @@ func TestExtractLinkFromString(t *testing.T) {
 	   </url>
 	</urlset>"`
 
-	got := extract(xml)
+	got := ExtractUrl(xml)
 
 	first := "http://www.sitemaps.org/schemas/sitemap/0.9"
 	second := "http://www.example.com/"
