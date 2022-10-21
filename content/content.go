@@ -1,4 +1,4 @@
-package linksExtractor
+package content
 
 import (
 	"io"
@@ -11,7 +11,7 @@ import (
 var SEPARATOR = "\n"
 
 // returns []byte from a file
-func GetContentFromFile(file string) []byte {
+func FromFile(file string) []byte {
 	content, err := os.ReadFile(file)
 	if err != nil {
 		log.Println(err)
@@ -20,7 +20,7 @@ func GetContentFromFile(file string) []byte {
 }
 
 // returns []byte from a URL
-func GetContentFromUrl(url string) []byte {
+func FromUrl(url string) []byte {
 	resp, err := http.Get(url)
 	if err != nil {
 		log.Println(err)
