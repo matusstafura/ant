@@ -28,3 +28,21 @@ func TestExtractUrlsFromString(t *testing.T) {
 		t.Fatalf("got %q, wanted %q", got, second)
 	}
 }
+
+func TestExtractUrlsFromFile(t *testing.T) {
+	testFilename := "../content/test/sitemap.xml"
+
+	got := UrlsFromFile(testFilename)
+	first := "http://www.sitemaps.org/schemas/sitemap/0.9"
+
+	if got[0] != first {
+		t.Fatalf("got %q, wanted %q", got, first)
+	}
+
+	count := len(got)
+	wanted := 4
+
+	if count != wanted {
+		t.Fatalf("got %v, wanted %v", count, wanted)
+	}
+}
