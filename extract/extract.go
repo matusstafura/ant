@@ -18,3 +18,9 @@ func UrlsFromFile(filename string) []string {
 	file := content.FromFile(filename)
 	return Urls(string(file))
 }
+
+// extracts http(s) from a url
+func UrlsFromUrl(url string) []string {
+	file := content.FromUrl(url)
+	return Urls(string(file))
+}

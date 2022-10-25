@@ -21,9 +21,10 @@ func FromFile(file string) []byte {
 
 // returns []byte from a URL
 func FromUrl(url string) []byte {
-	resp, err := http.Get(url)
+	client := &http.Client{}
+	resp, err := client.Get(url)
 	if err != nil {
-		log.Println(err)
+		log.Println("somethings wrong with input url", url)
 	}
 
 	html, err := io.ReadAll(resp.Body)

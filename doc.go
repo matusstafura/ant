@@ -11,6 +11,9 @@ import (
 func main() {
 	sitemap := extract.UrlsFromFile("content/test/sitemap.xml")
 	fmt.Println(sitemap) // [http://www.example.com http://www.other.com]
+
+	sitemap := extract.UrlsFromUrl("https://www.example.com")
+	fmt.Println(sitemap) // [http://www.example.com http://www.other.com]
 }
 
 ## Tests
