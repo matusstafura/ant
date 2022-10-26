@@ -45,6 +45,13 @@ func TestEndsWith(t *testing.T) {
 	if got != want {
 		t.Fatalf("got %t, wanted %t", got, want)
 	}
+
+	gotFalse := EndsWith("abcdef", "e")
+	wantFalse := false
+
+	if gotFalse != wantFalse {
+		t.Fatalf("got %t, wanted %t", got, want)
+	}
 }
 
 func TestEscape(t *testing.T) {
@@ -142,6 +149,13 @@ func TestStartsWith(t *testing.T) {
 	want := true
 
 	if got != want {
+		t.Fatalf("got %t, wanted %t", got, want)
+	}
+
+	gotFalse := StartsWith("abcdef", "b")
+	wantFalse := false
+
+	if gotFalse != wantFalse {
 		t.Fatalf("got %t, wanted %t", got, want)
 	}
 }

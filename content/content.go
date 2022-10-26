@@ -37,7 +37,7 @@ func FromUrl(url string) []byte {
 }
 
 // writes to a file
-func SaveSliceToFile(filename string, s []string) {
+func SliceToFile(filename string, s []string) {
 	if s != nil {
 		a := strings.Join(s, SEPARATOR)
 		os.WriteFile(filename, []byte(a), 0644)
