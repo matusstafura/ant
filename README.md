@@ -17,6 +17,10 @@ func main() {
 }
 ```
 
+```shell
+	go run main.go -f=extract -input="path/to/inputfile" -output="dump.txt"
+```
+
 ## TESTING
 
 run all tests
