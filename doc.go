@@ -22,6 +22,10 @@ func main() {
 go test ./... -v
 ```
 
+```shell
+	go run main.go -f=extract -input="path/to/inputfile" -output="dump.txt"
+```
+
 ## Contributions
 
 Contributions are welcome. Please see [CONTRIBUTING](https://github.com/matusstafura/.github/blob/main/CONTRIBUTING.md) for details.
@@ -31,4 +35,4 @@ Contributions are welcome. Please see [CONTRIBUTING](https://github.com/matussta
 This project is open-sourced software licensed under the MIT license.
 */
 
-package main
+package ant
