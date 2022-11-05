@@ -6,6 +6,7 @@ import (
 
 	"github.com/matusstafura/ant/content"
 	"github.com/matusstafura/ant/extract"
+	"github.com/matusstafura/ant/str"
 )
 
 func Main() {
@@ -31,8 +32,13 @@ func Main() {
 
 	if *function == "extract" {
 		log.Println("starting extract")
-		sitemap := extract.UrlsFromFile(*input)
-		content.SliceToFile(*output, sitemap)
+		if str.StartsWith(*input, "http") {
+			links := extract.UrlsFromUrl(*input)
+			content.SliceToFile(*output, links)
+		} else {
+			links := extract.UrlsFromFile(*input)
+			content.SliceToFile(*output, links)
+		}
 		log.Printf("finished: %s, input: %s, output: %s", *function, *input, *output)
 	}
 }
