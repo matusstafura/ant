@@ -5,7 +5,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strings"
 )
 
 var SEPARATOR = "\n"
@@ -37,9 +36,18 @@ func FromUrl(url string) []byte {
 }
 
 // writes to a file
-func SliceToFile(filename string, s []string) {
-	if s != nil {
-		a := strings.Join(s, SEPARATOR)
-		os.WriteFile(filename, []byte(a), 0644)
+func SliceToFile(filename string, s []string) error {
+	f, err := os.Create(filename)
+	if err != nil {
+		log.Println(err)
 	}
+	defer f.Close()
+
+	for _, v := range s {
+		_, err := f.WriteString(v + SEPARATOR)
+		if err != nil {
+			log.Println(err)
+		}
+	}
+	return nil
 }
