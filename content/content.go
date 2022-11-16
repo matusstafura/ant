@@ -19,9 +19,18 @@ func FromFile(file string) []byte {
 }
 
 // returns []byte from a URL
+type HTTPClient interface {
+	Get(url string) (*http.Response, error)
+}
+
+var Client HTTPClient
+
+func init() {
+	Client = &http.Client{}
+}
+
 func FromUrl(url string) []byte {
-	client := &http.Client{}
-	resp, err := client.Get(url)
+	resp, err := Client.Get(url)
 	if err != nil {
 		log.Println("somethings wrong with input url", url)
 	}

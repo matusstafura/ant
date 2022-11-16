@@ -1,6 +1,9 @@
 package content
 
 import (
+	"io/ioutil"
+	"net/http"
+	"strings"
 	"testing"
 )
 
@@ -10,6 +13,25 @@ func TestFromFile(t *testing.T) {
 	text := "some text\n"
 	if string(got) != text {
 		t.Fatalf("got %q, wanted %q", got, text)
+	}
+}
+
+type mockClient struct {
+}
+
+func (m mockClient) Get(url string) (*http.Response, error) {
+	return &http.Response{
+		Body: ioutil.NopCloser(strings.NewReader("text")),
+	}, nil
+}
+
+func TestFromUrl(t *testing.T) {
+	Client = mockClient{}
+	got := FromUrl("somewebsite.tld")
+	want := "text"
+
+	if string(got) != "text" {
+		t.Fatalf("got %q, wanted %q", got, want)
 	}
 }
 
