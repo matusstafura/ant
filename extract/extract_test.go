@@ -4,6 +4,22 @@ import (
 	"testing"
 )
 
+func assertString(t testing.TB, got, want string) {
+	t.Helper()
+
+	if got != want {
+		t.Errorf("got %q, wanted %q", got, want)
+	}
+}
+
+func assertInt(t testing.TB, got, want int) {
+	t.Helper()
+
+	if got != want {
+		t.Errorf("got %v, wanted %v", got, want)
+	}
+}
+
 func TestExtractUrlsFromString(t *testing.T) {
 	xml := `"<?xml version="1.0" encoding="UTF-8"?>
 	<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -20,13 +36,8 @@ func TestExtractUrlsFromString(t *testing.T) {
 	first := "http://www.sitemaps.org/schemas/sitemap/0.9"
 	second := "http://www.example.com/"
 
-	if got[0] != first {
-		t.Fatalf("got %q, wanted %q", got, first)
-	}
-
-	if got[1] != second {
-		t.Fatalf("got %q, wanted %q", got, second)
-	}
+	assertString(t, got[0], first)
+	assertString(t, got[1], second)
 }
 
 func TestExtractUrlsFromFile(t *testing.T) {
@@ -35,14 +46,10 @@ func TestExtractUrlsFromFile(t *testing.T) {
 	got := UrlsFromFile(testFilename)
 	first := "http://www.sitemaps.org/schemas/sitemap/0.9"
 
-	if got[0] != first {
-		t.Fatalf("got %q, wanted %q", got, first)
-	}
+	assertString(t, got[0], first)
 
 	count := len(got)
 	wanted := 4
 
-	if count != wanted {
-		t.Fatalf("got %v, wanted %v", count, wanted)
-	}
+	assertInt(t, count, wanted)
 }
